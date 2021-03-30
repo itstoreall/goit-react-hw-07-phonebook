@@ -1,2 +1,19 @@
-# goit-react-hw-07-phonebook
-Homework #7 - Phonebook (selectors, JSON server)
+# Phonebook
+
+## Homework #7 - Selectors, JSON server
+
+Open [localhost](http://localhost:3000)
+
+**_Use:_**
+
+- prop-types
+- eslint
+- prettier
+- gh-pages
+- modern-normalize
+- node-sass
+- axios
+- json-server
+- redux
+- react-redux
+- redux-devtools-extension
