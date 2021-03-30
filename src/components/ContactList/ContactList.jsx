@@ -5,7 +5,6 @@ import { DELETE } from '../../redux/contacts/contact-operations';
 import { contactList } from './Contacts.module.scss';
 
 const ContactList = ({ contacts, onDeleteContact }) => {
-  console.log('contacts:', contacts);
   return (
     <ul className={contactList}>
       {contacts.map(contact => (
@@ -30,8 +29,6 @@ const ContactList = ({ contacts, onDeleteContact }) => {
 // };
 
 const getFilteredItems = (allItems, filter) => {
-  console.log('allItems', allItems);
-  console.log('filter', filter);
   const normalizedFilter = filter.toLowerCase();
 
   return allItems.filter(({ name }) =>
@@ -41,8 +38,9 @@ const getFilteredItems = (allItems, filter) => {
 
 const mapStateToProps = ({ contacts: { items, filter } }) => ({
   contacts: getFilteredItems(items, filter),
-  // contacts: items,
 });
+
+// Dispatch в компоненте вызывает операцию
 
 const mapDispatchToProps = dispatch => ({
   onDeleteContact: id => dispatch(DELETE(id)),

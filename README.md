@@ -2,8 +2,6 @@
 
 ## Homework #7 - Selectors, JSON server
 
-Open [localhost](http://localhost:3000)
-
 **_Use:_**
 
 - prop-types
@@ -18,5 +16,10 @@ Open [localhost](http://localhost:3000)
 - react-redux
 - redux-devtools-extension
 - redux toolkit
+- redux-logger
+
+> The End of the Phonebook
+
+Open [localhost](http://localhost:3000)
 
 cd documents/github/goit-react-hw-07-phonebook

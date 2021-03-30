@@ -5,10 +5,12 @@ export const getContactsRequest = createAction('contacts/getContactsRequest');
 export const getContactsSuccess = createAction('contacts/getContactsSuccess');
 export const getContactsError = createAction('contacts/getContactsError');
 
+// Add
 export const addContactRequest = createAction('contacts/addContactRequest');
 export const addContactSuccess = createAction('contacts/addContactSuccess');
 export const addContactError = createAction('contacts/addContactError');
 
+// Delete
 export const deleteContactRequest = createAction(
   'contacts/deleteContactRequest',
 );
@@ -17,4 +19,10 @@ export const deleteContactSuccess = createAction(
 );
 export const deleteContactError = createAction('contacts/deleteContactError');
 
-export const FILTER = createAction('contact/filter');
+// Filter
+export const contactFilter = createAction('contact/filter');
+
+// Error
+// export const errorRequest = createAction('contacts/errorRequest');
+// export const errorSuccess = createAction('contacts/errorSuccess');
+// export const errorError = createAction('contacts/errorError');

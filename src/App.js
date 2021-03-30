@@ -10,7 +10,6 @@ import { wrapper, title, subtitle, loading } from './App.module.scss';
 
 function App({ handleSubmit, handleInputFilter, isLoading }) {
   useEffect(() => {
-    console.log('useEffect');
     GET();
   });
 
@@ -30,9 +29,6 @@ function App({ handleSubmit, handleInputFilter, isLoading }) {
 const mapStateToProps = state => ({
   isLoading: state.contacts.loading,
 });
-// {
-//   return state;
-// };
 
 const mapDispatchToProps = dispatch => {
   return {

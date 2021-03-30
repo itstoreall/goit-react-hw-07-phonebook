@@ -9,37 +9,53 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
+  // errorRequest,
+  // errorSuccess,
+  // errorError,
 } from './contact-actions';
 
 axios.defaults.baseURL = 'http://localhost:2222';
 
-export const GET = () => dispatch => {
-  dispatch(getContactsRequest());
+/**
+ * Операция это функция, вызванная в компоненте,
+ * которая возвращает другую функцию, в которой
+ * выполняются асинх запросы по паттерну:
+ * Request > Success > Error
+ */
 
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(getContactsSuccess(data)))
-    .catch(error => dispatch(getContactsError(error)));
+// GET
+export const GET = () => async dispatch => {
+  dispatch(getContactsRequest());
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(getContactsSuccess(data));
+  } catch (error) {
+    dispatch(getContactsError(error));
+  }
 };
 
-export const ADD = text => dispatch => {
+// ADD
+export const ADD = text => async dispatch => {
   const newContact = { name: text.name, number: text.number };
 
   dispatch(addContactRequest());
 
-  axios
-    .post('/contacts', newContact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(error => dispatch(addContactError(error)));
+  try {
+    const { data } = await axios.post('/contacts', newContact);
+    dispatch(addContactSuccess(data));
+  } catch (error) {
+    dispatch(addContactError(error));
+  }
 };
 
-export const DELETE = id => dispatch => {
+// DELETE
+export const DELETE = id => async dispatch => {
   dispatch(deleteContactRequest());
 
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
+  try {
+    await axios.delete(`/contacts/${id}`);
+    dispatch(deleteContactSuccess(id));
+  } catch (error) {
+    dispatch(deleteContactError(error));
+  }
 };
-
-// export default { ADD }; // eslint-disable-line

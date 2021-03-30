@@ -11,8 +11,8 @@ import {
   deleteContactRequest,
   deleteContactSuccess,
   deleteContactError,
-  // DELETE,
-  FILTER,
+  contactFilter,
+  // errorMessage,
 } from './contact-actions';
 
 const itemsReducer = createReducer(db.contacts, {
@@ -35,11 +35,16 @@ const loading = createReducer(false, {
 });
 
 const filterReducer = createReducer('', {
-  [FILTER]: (_, { payload }) => payload,
+  [contactFilter]: (_, { payload }) => payload,
 });
+
+// const error = createReducer(null, {
+//   [errorMessage]: 'Error!!!',
+// });
 
 export default combineReducers({
   items: itemsReducer,
   filter: filterReducer,
   loading,
+  // error,
 });

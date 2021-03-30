@@ -1,7 +1,6 @@
 import { getDefaultMiddleware, configureStore } from '@reduxjs/toolkit';
+import logger from 'redux-logger'; // Don't delete
 import contactReducer from './contacts/contact-reducer';
-// import storage from 'redux-persist/lib/storage';
-// import logger from 'redux-logger'; // Don't delete
 import {
   FLUSH,
   REHYDRATE,
@@ -11,27 +10,21 @@ import {
   REGISTER,
 } from 'redux-persist';
 
+// Thunk ловит функции, которые вместо объектов
 const middleware = [
   ...getDefaultMiddleware({
     serializableCheck: {
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
-  // logger, // Don't delete
+  logger, // Don't delete
 ];
-
-// const contactsPersistConfig = {
-//   key: 'contacts',
-//   storage,
-//   blacklist: ['filter'],
-// };
 
 const store = configureStore({
   reducer: {
     contacts: contactReducer,
   },
   middleware,
-
   devTools: process.env.NODE_ENV === 'development',
 });
 
