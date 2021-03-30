@@ -25,7 +25,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "server": "json-server --watch server/db.json --port 2223 --delay 500",
+    "server": "json-server --watch src/components/dataBase/db.json --port 2222 --delay 500",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "test": "react-scripts test",

@@ -1,29 +1,43 @@
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import * as actions from './redux/contacts/contact-actions';
+// import contactsOperations from './redux/contacts/contact-operations';
+import { GET } from './redux/contacts/contact-operations';
+import { ADD } from './redux/contacts/contact-operations';
 import Form from './components/PhonebookForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
-import { wrapper, title, subtitle } from './App.module.scss';
+import { wrapper, title, subtitle, loading } from './App.module.scss';
 
-function App({ handleSubmit, handleInputFilter }) {
+function App({ handleSubmit, handleInputFilter, isLoading }) {
+  useEffect(() => {
+    console.log('useEffect');
+    GET();
+  });
+
   return (
     <div className={wrapper}>
       <h1 className={title}>Phonebook</h1>
       <Form onInputChange={handleInputFilter} onSubmit={handleSubmit} />
-      <h2 className={subtitle}>Contacts</h2>
+      <h2 className={subtitle}>
+        Contacts {isLoading && <span className={loading}>Loading...</span>}
+      </h2>
       <Filter />
       <ContactList />
     </div>
   );
 }
 
-const mapStateToProps = state => {
-  return state;
-};
+const mapStateToProps = state => ({
+  isLoading: state.contacts.loading,
+});
+// {
+//   return state;
+// };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSubmit: newContact => dispatch(actions.ADD(newContact)),
+    getContacts: () => dispatch(GET()),
+    handleSubmit: newContact => dispatch(ADD(newContact)),
   };
 };
 

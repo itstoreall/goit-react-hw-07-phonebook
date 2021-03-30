@@ -18,3 +18,5 @@ Open [localhost](http://localhost:3000)
 - react-redux
 - redux-devtools-extension
 - redux toolkit
+
+cd documents/github/goit-react-hw-07-phonebook
