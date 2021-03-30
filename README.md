@@ -17,3 +17,4 @@ Open [localhost](http://localhost:3000)
 - redux
 - react-redux
 - redux-devtools-extension
+- redux toolkit
