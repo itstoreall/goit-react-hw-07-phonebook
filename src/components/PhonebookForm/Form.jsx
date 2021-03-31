@@ -1,8 +1,8 @@
+import { connect } from 'react-redux';
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import { form, label, input, button } from './Form.module.scss';
 
-const Form = ({ onSubmit }) => {
+const Form = ({ state, onSubmit }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -16,10 +16,14 @@ const Form = ({ onSubmit }) => {
   const handleAddContact = e => {
     e.preventDefault();
 
-    onSubmit({
-      name: name,
-      number: number,
-    });
+    state.contacts.items.find(
+      item => item.name.toLowerCase() === name.toLowerCase(),
+    )
+      ? alert(`${name} is already in contacts.`)
+      : onSubmit({
+          name: name,
+          number: number,
+        });
 
     setName('');
     setNumber('');
@@ -54,8 +58,8 @@ const Form = ({ onSubmit }) => {
   );
 };
 
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+const mapStateToProps = state => ({
+  state: state,
+});
 
-export default Form;
+export default connect(mapStateToProps, null)(Form);

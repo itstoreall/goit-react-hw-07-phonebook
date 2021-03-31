@@ -1,21 +1,13 @@
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { contactsSelectors, contactsActions } from '../../redux/contacts';
 import { label, input } from './Filter.module.scss';
 
-const Filter = ({ value, onChange }) => {
-  return (
-    <label className={label}>
-      Find contacts by name
-      <input className={input} value={value} onChange={onChange} />
-    </label>
-  );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+const Filter = ({ value, onChange }) => (
+  <label className={label}>
+    Find contacts by name
+    <input className={input} value={value} onChange={onChange} />
+  </label>
+);
 
 const mapStateToProps = state => ({
   value: contactsSelectors.getFilter(state),
