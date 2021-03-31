@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { GET } from './redux/contacts/contact-operations';
-import { ADD } from './redux/contacts/contact-operations';
+import { contactsOperations, contactsSelectors } from './redux/contacts';
 import Form from './components/PhonebookForm';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
-import { getLoading } from './redux/contacts/contacts-selectors';
 import { wrapper, title, subtitle, loading } from './App.module.scss';
 
 function App({ handleSubmit, handleInputFilter, isLoading }) {
   useEffect(() => {
-    GET();
+    contactsOperations.GET();
   });
 
   return (
@@ -27,13 +25,13 @@ function App({ handleSubmit, handleInputFilter, isLoading }) {
 }
 
 const mapStateToProps = state => ({
-  isLoading: getLoading(state),
+  isLoading: contactsSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    getContacts: () => dispatch(GET()),
-    handleSubmit: newContact => dispatch(ADD(newContact)),
+    getContacts: () => dispatch(contactsOperations.GET()),
+    handleSubmit: newContact => dispatch(contactsOperations.ADD(newContact)),
   };
 };
 

@@ -1,6 +1,6 @@
 import { getDefaultMiddleware, configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger'; // Don't delete
-import contactReducer from './contacts/contact-reducer';
+import { contactsReducer } from './contacts';
 import {
   FLUSH,
   REHYDRATE,
@@ -22,7 +22,7 @@ const middleware = [
 
 const store = configureStore({
   reducer: {
-    contacts: contactReducer,
+    contacts: contactsReducer,
   },
   middleware,
   devTools: process.env.NODE_ENV === 'development',

@@ -1,18 +1,16 @@
 import axios from 'axios';
-import {
-  getContactsRequest,
-  getContactsSuccess,
-  getContactsError,
-  addContactRequest,
-  addContactSuccess,
-  addContactError,
-  deleteContactRequest,
-  deleteContactSuccess,
-  deleteContactError,
-  // errorRequest,
-  // errorSuccess,
-  // errorError,
-} from './contact-actions';
+// import {
+//   getContactsRequest,
+//   getContactsSuccess,
+//   getContactsError,
+//   addContactRequest,
+//   addContactSuccess,
+//   addContactError,
+//   deleteContactRequest,
+//   deleteContactSuccess,
+//   deleteContactError,
+// } from './contact-actions';
+import { contactsActions } from '../contacts';
 
 axios.defaults.baseURL = 'http://localhost:2222';
 
@@ -25,12 +23,12 @@ axios.defaults.baseURL = 'http://localhost:2222';
 
 // GET
 export const GET = () => async dispatch => {
-  dispatch(getContactsRequest());
+  dispatch(contactsActions.getContactsRequest());
   try {
     const { data } = await axios.get('/contacts');
-    dispatch(getContactsSuccess(data));
+    dispatch(contactsActions.getContactsSuccess(data));
   } catch (error) {
-    dispatch(getContactsError(error));
+    dispatch(contactsActions.getContactsError(error));
   }
 };
 
@@ -38,24 +36,24 @@ export const GET = () => async dispatch => {
 export const ADD = text => async dispatch => {
   const newContact = { name: text.name, number: text.number };
 
-  dispatch(addContactRequest());
+  dispatch(contactsActions.addContactRequest());
 
   try {
     const { data } = await axios.post('/contacts', newContact);
-    dispatch(addContactSuccess(data));
+    dispatch(contactsActions.addContactSuccess(data));
   } catch (error) {
-    dispatch(addContactError(error));
+    dispatch(contactsActions.addContactError(error));
   }
 };
 
 // DELETE
 export const DELETE = id => async dispatch => {
-  dispatch(deleteContactRequest());
+  dispatch(contactsActions.deleteContactRequest());
 
   try {
     await axios.delete(`/contacts/${id}`);
-    dispatch(deleteContactSuccess(id));
+    dispatch(contactsActions.deleteContactSuccess(id));
   } catch (error) {
-    dispatch(deleteContactError(error));
+    dispatch(contactsActions.deleteContactError(error));
   }
 };

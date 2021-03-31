@@ -17,6 +17,7 @@
 - redux-devtools-extension
 - redux toolkit
 - redux-logger
+- reselect (from toolkit)
 
 > The End of the Phonebook
 

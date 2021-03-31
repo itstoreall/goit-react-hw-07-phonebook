@@ -1,6 +1,8 @@
 import { createAction } from '@reduxjs/toolkit';
 
 // Synchronous actions
+
+// Get
 export const getContactsRequest = createAction('contacts/getContactsRequest');
 export const getContactsSuccess = createAction('contacts/getContactsSuccess');
 export const getContactsError = createAction('contacts/getContactsError');
@@ -21,8 +23,3 @@ export const deleteContactError = createAction('contacts/deleteContactError');
 
 // Filter
 export const contactFilter = createAction('contact/filter');
-
-// Error
-// export const errorRequest = createAction('contacts/errorRequest');
-// export const errorSuccess = createAction('contacts/errorSuccess');
-// export const errorError = createAction('contacts/errorError');
